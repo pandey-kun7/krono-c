@@ -13,6 +13,7 @@ int main(){
 
     if(socketfd==-1){
         printf("Socket failed : %d\n",WSAGetLastError());
+        return 1;
     }
     
     printf("Socket successfully created.\n");
@@ -25,11 +26,18 @@ int main(){
     host_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     if(bind(socketfd,(struct sockaddr*)&host_addr,host_addr_len)!=0){
-        printf("Socket Binding Error : %s\n",WSAGetLastError());
+        printf("Binding Failed : %s\n",WSAGetLastError());
         return 1;
     }
 
-    printf("Binding of the socket done successfully.");
+    printf("Binding of the socket done successfully.\n");
+
+    if(listen(socketfd,SOMAXCONN)!=0){
+        printf("Listen Failed: %s\n",WSAGetLastError());
+        return 1;
+    }
+
+    printf("Now the passive server socket listens.\n");
 
     // closesocket(socketfd);
 }

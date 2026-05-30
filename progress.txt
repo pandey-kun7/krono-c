@@ -20,3 +20,15 @@ And we are done with the built of a tcp socket ...
 Now I am going to assign a name to the socket
 i.e., bind it with a local address on a port
 
+used the sockaddr_in struct for that which has the inbuilt family,addr,port members
+then type casted this whole thing in the standard bind's sockaddr struct :)
+used INADRR_ANY (obviously)
+
+stream sockets are of two types: active and passive
+when created, a socket is active i.e., it is ready to connect()
+when used listen on a scoket, it os set to passive, it listen() for responses
+
+we will use listen with the second arg as backlog which specifies the number of completely connected sockets waiting for aceept()
+SOMAXCONN was the eralier harcoded Kernel level value (128)
+
+
