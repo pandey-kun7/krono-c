@@ -17,3 +17,6 @@ and using -lws2_32 while compilation as there resides the winsock2's implementat
 
 And we are done with the built of a tcp socket ...
 
+Now I am going to assign a name to the socket
+i.e., bind it with a local address on a port
+
