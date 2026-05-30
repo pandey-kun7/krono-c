@@ -1,0 +1,4 @@
+I wish to code in C coz I wanna go the in-depth, deep and fuzzy realm of memory management and netwroking.
+In this repository I wish to build my own Web Server, nothing fancy.
+I will add the comments wherever I feel like :)
+
