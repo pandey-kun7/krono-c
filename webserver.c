@@ -39,5 +39,17 @@ int main(){
 
     printf("Now the passive server socket listens.\n");
 
-    // closesocket(socketfd);
+    while(1){
+        SOCKET newsocketfd = accept(socketfd,(struct sockaddr*)&host_addr,(int *)&host_addr_len);
+
+        if(newsocketfd==-1){
+            printf("Accept Failed: %s\n",WSAGetLastError());
+            return 1;
+        }
+
+        printf("Connection accepted.");
+
+        closesocket(newsocketfd);
+    }
+
 }

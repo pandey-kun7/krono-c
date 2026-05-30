@@ -31,4 +31,16 @@ when used listen on a scoket, it os set to passive, it listen() for responses
 we will use listen with the second arg as backlog which specifies the number of completely connected sockets waiting for aceept()
 SOMAXCONN was the eralier harcoded Kernel level value (128)
 
+now we accept the request
+but the accept() sys call is doing something crazy
+-used for connection based socket types (SOCK_STREAM, SOCK_SEQ‐ PACKET)
+-takes the first connection from the pending connections queue (fcfs)
+-creates a new socket
+-return a file descriptor for that new socket 
+-the new socket is not in listening state (why?)
+-the original server socket is unaffected by this call (-_-)
 
+self blocking when no connection present
+
+why addrlen is a pointer?
+coz it has to tell the kernel of the space needed to write the address, else underflow can be triggered
