@@ -2,3 +2,18 @@ I wish to code in C coz I wanna go the in-depth, deep and fuzzy realm of memory 
 In this repository I wish to build my own Web Server, nothing fancy.
 I will add the comments wherever I feel like :)
 
+This is done in a windows machine BTW (T-T), that is going to be a good excercise 
+Let's get it!!!
+
+Winsock Library 
+initlaised like
+
+'''
+WSADATA wsa;
+WSAStartup(MAKEWORD(2,2),&wsa)
+'''
+
+and using -lws2_32 while compilation as there resides the winsock2's implementations
+
+And we are done with the built of a tcp socket ...
+
