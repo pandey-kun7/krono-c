@@ -44,3 +44,14 @@ self blocking when no connection present
 
 why addrlen is a pointer?
 coz it has to tell the kernel of the space needed to write the address, else underflow can be triggered
+
+now we are going to implement read on the client's req
+we will be using the read function (recv call can be used but that will be taken care of later)
+it take three argument, the file descripter , the pointer to the buffer address, the no of bytes to be read and stored in the temp buffer
+
+future scope : You’ll also be able to check the number of bytes that are read, and continue reading when the limit of the buffer is reached
+
+alright, this is Windows, we are not playing here, 
+we will be using the recv and send calls cause its WINDOWS!!!!
+the only difference btw read and reac is the flags we use in recv
+well it was simple hehe

@@ -2,6 +2,7 @@
 #include <winsock2.h>
 
 #define PORT 8000
+#define BUFFER_SIZE 1024
 
 int main(){
     WSADATA wsa;
@@ -10,6 +11,8 @@ int main(){
     }
 
     SOCKET socketfd = socket(AF_INET,SOCK_STREAM,0);
+
+    char readbuffer[BUFFER_SIZE];
 
     if(socketfd==-1){
         printf("Socket failed : %d\n",WSAGetLastError());
@@ -44,10 +47,18 @@ int main(){
 
         if(newsocketfd==-1){
             printf("Accept Failed: %s\n",WSAGetLastError());
-            return 1;
+            continue;
         }
 
         printf("Connection accepted.");
+
+        int readval_ = recv(newsocketfd,readbuffer,BUFFER_SIZE,0);
+        if(readval_==-1){
+            printf("Read Failed: %s\n",WSAGetLastError());
+            continue;
+        }
+
+        printf("Incoming requests are read.");
 
         closesocket(newsocketfd);
     }
