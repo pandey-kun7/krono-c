@@ -1,3 +1,5 @@
+![krono](image.png)
+
 # krono
 
 A simple, lightweight web server built from scratch in C, designed to explore the depths of network programming.
@@ -8,9 +10,11 @@ A simple, lightweight web server built from scratch in C, designed to explore th
 
 ## Features
 
-- **Winsock2 Integration**: Built for Windows environments.
+- **Winsock2 Integration**: Optimized for Windows environments using the Winsock2 library.
 - **TCP Socket Implementation**: Handles low-level socket creation and management.
-- **Connection Handling**: Implements basic binding, listening, and accepting of incoming connections.
+- **HTTP/1.1 Support**: Serves basic HTTP responses to incoming browser requests.
+- **Static Content**: Delivers a hardcoded HTML "Hello" page to clients.
+- **Activity Logging**: Real-time console output for connection and request status.
 
 ## Prerequisites
 
@@ -19,7 +23,7 @@ A simple, lightweight web server built from scratch in C, designed to explore th
 
 ## Building and Running
 
-To compile the server, you need to link against the `ws2_32` library:
+To compile the server, link against the `ws2_32` library:
 
 ```bash
 gcc webserver.c -o krono -lws2_32
@@ -30,13 +34,11 @@ To run the server:
 ```bash
 ./krono
 ```
-or
 
-```bash
-krono
-```
+Once running, open your browser and navigate to:
+`http://localhost:8000`
 
-The server currently listens on port `8000` by default.
+You should see: **"Hello Bro, I am the krono server 😇"**
 
 ## Progress
 
@@ -45,6 +47,12 @@ The server currently listens on port `8000` by default.
 - [x] Binding to local address
 - [x] Passive listening state
 - [x] Accepting connections
+- [x] Receiving client requests
+- [x] Sending HTTP responses
+- [x] Connection lifecycle management (closesocket)
+- [ ] Multi-threaded request handling
+- [ ] Parsing HTTP headers (GET/POST)
+- [ ] Serving files from disk (e.g., `index.html`)
 
 ## License
 

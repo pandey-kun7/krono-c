@@ -55,3 +55,16 @@ alright, this is Windows, we are not playing here,
 we will be using the recv and send calls cause its WINDOWS!!!!
 the only difference btw read and reac is the flags we use in recv
 well it was simple hehe
+
+now we need to send a response to , coz this is a webserver
+for that we will be using the write method
+the write method uses the socketfd, a buf from where the things will be written on the file descriptor, the no of bytes to write
+
+SIKE, ITS WINDOWS
+we will be using the send call:)
+
+And with that, we have a functional web server! 
+It accepts connections, reads requests, and sends back a hardcoded HTML response. 
+Also remembered to close the connection socket so we don't leak resources. 
+Version 1.0 is officially fulfilled! 🚀
+

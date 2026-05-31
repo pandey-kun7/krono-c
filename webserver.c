@@ -14,6 +14,11 @@ int main(){
 
     char readbuffer[BUFFER_SIZE];
 
+    char standard_resp[] = "HTTP/1.1 200 OK\r\n"
+                  "Server: krono\r\n"
+                  "Content-Type: text/html; charset=UTF-8\r\n\r\n"
+                  "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><style>body{display:flex;justify-content:center;align-items:center }</style></head><body><p>Hello Bro, I am the krono server 😇</p></body></html>\r\n";
+
     if(socketfd==-1){
         printf("Socket failed : %d\n",WSAGetLastError());
         return 1;
@@ -50,7 +55,7 @@ int main(){
             continue;
         }
 
-        printf("Connection accepted.");
+        printf("Connection accepted.\n");
 
         int readval_ = recv(newsocketfd,readbuffer,BUFFER_SIZE,0);
         if(readval_==-1){
@@ -58,9 +63,19 @@ int main(){
             continue;
         }
 
-        printf("Incoming requests are read.");
+        printf("Incoming requests are read.\n");
 
-        closesocket(newsocketfd);
+        int writeval_ = send(newsocketfd,standard_resp,strlen(standard_resp),0);
+        if(writeval_ == -1){
+            printf("Write Failed: %d\n",WSAGetLastError());
+            continue;
+        }
+
+        printf("Response sent.\n");
+
+        shutdown(newsocketfd,SD_SEND); // graceful shutdown
+
+        // closesocket(newsocketfd);
     }
 
 }
