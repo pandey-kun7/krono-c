@@ -33,6 +33,9 @@ int main(){
     host_addr.sin_port = htons(PORT);
     host_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
+    struct sockaddr_in client_addr;
+    int client_addr_len = sizeof(client_addr);
+
     if(bind(socketfd,(struct sockaddr*)&host_addr,host_addr_len)!=0){
         printf("Binding Failed : %s\n",WSAGetLastError());
         return 1;
@@ -57,6 +60,12 @@ int main(){
 
         printf("Connection accepted.\n");
 
+        SOCKET sockn = getsockname(newsocketfd,(struct sockaddr *)&client_addr,(int *)&client_addr_len);
+        if(sockn==-1){
+            printf("Getting Socket Failed: %s\n",WSAGetLastError());
+            continue;
+        }
+
         int readval_ = recv(newsocketfd,readbuffer,BUFFER_SIZE,0);
         if(readval_==-1){
             printf("Read Failed: %s\n",WSAGetLastError());
@@ -64,6 +73,13 @@ int main(){
         }
 
         printf("Incoming requests are read.\n");
+
+        char method[BUFFER_SIZE],version[BUFFER_SIZE],uri[BUFFER_SIZE];
+        sscanf(readbuffer,"%s %s %s",method,uri,version);
+
+        printf("[%s:%u] %s %s %s\n",inet_ntoa(client_addr.sin_addr),ntohs(client_addr.sin_port),method,uri,version);
+        
+        // printf("%s",readbuffer); this shows the entire mf req
 
         int writeval_ = send(newsocketfd,standard_resp,strlen(standard_resp),0);
         if(writeval_ == -1){

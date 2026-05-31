@@ -63,6 +63,8 @@ the write method uses the socketfd, a buf from where the things will be written 
 SIKE, ITS WINDOWS
 we will be using the send call:)
 
+added a few terminal logs
+
 And with that, we have a functional web server! 
 It accepts connections, reads requests, and sends back a hardcoded HTML response. 
 Also remembered to close the connection socket so we don't leak resources. 
