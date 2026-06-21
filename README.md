@@ -92,8 +92,6 @@ Implemented so far:
 - [x] Loading files from disk
 - [x] Basic MIME type detection
 - [x] Makefile-based build with `ws2_32`
-- [ ] Robust HTTP parsing
-- [ ] Proper error responses (for example, `404 Not Found`)
 - [ ] Stable cache implementation
 - [ ] Multi-client or threaded handling
 
