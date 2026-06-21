@@ -70,3 +70,6 @@ It accepts connections, reads requests, and sends back a hardcoded HTML response
 Also remembered to close the connection socket so we don't leak resources. 
 Version 1.0 is officially fulfilled! 🚀
 
+I will try to implement a cache now, the idea is if a file is served from the disk, it gets stored in a cache and then the response time gets reduced very much,
+the cache type would be a LRU (least recently used) cache
+where, when a file entry which is not there, gets added , if size increases then, the last entry will get removed
